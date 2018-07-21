@@ -4,16 +4,17 @@
 #
 Name     : XStatic-Hogan
 Version  : 2.0.0.2
-Release  : 16
+Release  : 17
 URL      : http://pypi.debian.net/XStatic-Hogan/XStatic-Hogan-2.0.0.2.tar.gz
 Source0  : http://pypi.debian.net/XStatic-Hogan/XStatic-Hogan-2.0.0.2.tar.gz
 Summary  : Hogan 2.0.0 (XStatic packaging standard)
 Group    : Development/Tools
 License  : Apache-2.0
+Requires: XStatic-Hogan-python3
 Requires: XStatic-Hogan-python
+BuildRequires : buildreq-distutils3
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
@@ -33,10 +34,20 @@ BuildRequires : setuptools
 %package python
 Summary: python components for the XStatic-Hogan package.
 Group: Default
+Requires: XStatic-Hogan-python3
 Provides: xstatic-hogan-python
 
 %description python
 python components for the XStatic-Hogan package.
+
+
+%package python3
+Summary: python3 components for the XStatic-Hogan package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the XStatic-Hogan package.
 
 
 %prep
@@ -47,15 +58,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503088352
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1532214522
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1503088352
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -65,5 +73,7 @@ echo ----[ mark ]----
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python2*/*
+
+%files python3
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
