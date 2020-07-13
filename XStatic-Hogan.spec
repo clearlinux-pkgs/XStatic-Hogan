@@ -4,7 +4,7 @@
 #
 Name     : XStatic-Hogan
 Version  : 2.0.0.3
-Release  : 25
+Release  : 26
 URL      : https://files.pythonhosted.org/packages/1b/25/4535fe5c20dd42445aee7b1a3f0b572ebda0e3979e70a8c218eec2d5d09d/XStatic-Hogan-2.0.0.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/1b/25/4535fe5c20dd42445aee7b1a3f0b572ebda0e3979e70a8c218eec2d5d09d/XStatic-Hogan-2.0.0.3.tar.gz
 Summary  : Hogan 2.0.0 (XStatic packaging standard)
